@@ -3,6 +3,7 @@ package rmutr.boonsathain.wanwisa.ncs1;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -34,11 +35,22 @@ public class AddBoat extends AppCompatActivity {
 
     private void createSpinner() {
 
-        String[] typeBoatStrings = getResources().getStringArray(R.array.typeboat);
+        final String[] typeBoatStrings = getResources().getStringArray(R.array.typeboat);
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, typeBoatStrings);
         spinner.setAdapter(stringArrayAdapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                data16String = typeBoatStrings[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {​​
+                data16String = typeBoatStrings[0];
+            }
+        });
 
     }   // createSpinner
 
